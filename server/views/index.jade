@@ -1,0 +1,26 @@
+//
+   Created by TTSSONAT on 05/03/2015.
+
+doctype html
+
+head
+    title Movie Search Page
+    script(type="text/javascript", src=/public/vendor/jquery/dist/jquery.min.js)
+    script(type="text/javascript", src=/public/vendor/knockout/dist/jquery.min.js)
+
+body
+    form
+        table
+            tr
+                td From
+                td
+                    input(type="number",min="1900",max="2015",data-bind="value:fromYear")
+            tr
+                td To
+                td
+                    input(type="number",min="1900",max="2015",data-bind="value:toYear")
+            tr
+                td Genre
+                td
+                    select(data-bind="options: genres, value:genre")
+                    input(type="submit",min="1900",value="search" ,data-bind="click:search")
