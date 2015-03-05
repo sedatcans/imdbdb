@@ -25,12 +25,22 @@ var movieSchema=new mongoose.Schema({
 });
 
 var Movie =mongoose.model('movies2',movieSchema);
+var Movie1 =mongoose.model('movies1',movieSchema);
 
 var app=express();
 
 app.get('/movies/byImdb/:imdb',function(req,res)
 {
     Movie.find({imdb:req.params.imdb},function(err,result)
+    {
+        res.set('Content-Type','application/json');
+        res.status(200).send(result);
+    });
+});
+
+app.get('/genres',function(req,res)
+{
+    Movie1.distinct('genres.name',function(err,result)
     {
         res.set('Content-Type','application/json');
         res.status(200).send(result);
