@@ -47,5 +47,22 @@ app.get('/genres',function(req,res)
     });
 });
 
+app.get('/movies/search/:from/:to/:genre',function(req,res)
+{
+    Movie1.find({
+        $and :[
+            {"year" : {$gte : req.params.from}},
+            {"year" : {$lte : req.params.to}},
+            {"genres.name" :{$in :[req.params.genre] }}
+        ]}).sort({"year":-1}).exec(function(err,movies){
+        console.log(req.params.to);
+        res.set('Content-Type','application/json');
+        res.status(200).send(movies);
+    });
+
+
+
+});
+
 var port =8001;
 app.listen(port);
