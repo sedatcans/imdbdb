@@ -29,6 +29,10 @@ var Movie1 =mongoose.model('movies1',movieSchema);
 
 var app=express();
 
+app.set('views',_dirName+ '/server/views');
+app.set('view-engine','jade');
+app.use(express.static(_dirName +'/public'));
+
 app.get('/movies/byImdb/:imdb',function(req,res)
 {
     Movie.find({imdb:req.params.imdb},function(err,result)
@@ -63,6 +67,9 @@ app.get('/movies/search/:from/:to/:genre',function(req,res)
 
 
 });
-
+app.get("/",function(req,res)
+{
+    res.render('index');
+});
 var port =8001;
 app.listen(port);
